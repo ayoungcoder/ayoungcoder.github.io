@@ -64,8 +64,8 @@
   
     <article id="post-初识GIT" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/30/初识GIT/" class="article-date">
-  <time datetime="2019-01-30T11:53:01.140Z" itemprop="datePublished">2019-01-30</time>
+    <a href="/2019/01/31/初识GIT/" class="article-date">
+  <time datetime="2019-01-31T07:58:32.359Z" itemprop="datePublished">2019-01-31</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/30/初识GIT/">初识 “GIT”</a>
+      <a class="article-title" href="/2019/01/31/初识GIT/">初识 “GIT”</a>
     </h1>
   
 
@@ -84,7 +84,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>1、把master同步到你自己的本地yongxin分支。</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 克隆项目到本地</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/ayoungcoder/ayoungcoder.github.io.git</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建自己的分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 拉取远程master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git pull</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把远程master合并到自己分支yongxin</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge master</span></span><br></pre></td></tr></table></figure></p>
+        <p><img src="/2019/01/31/初识GIT/git.jpg" alt="logo"><br><strong>1、把master同步到你自己的本地yongxin分支。</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 克隆项目到本地</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/ayoungcoder/ayoungcoder.github.io.git</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建自己的分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 拉取远程master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git pull</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把远程master合并到自己分支yongxin</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge master</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>2、提交本地yongxin分支到远程yongxin分支</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 切换到yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看文件状态</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git status </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加文件到暂存区</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git add .</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 提交到暂存区</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit -m ‘fix’</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送到远程的yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>3、本地分支合并到master，并调到远程master分支。</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 切换到master分支 </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把本地分支合并到master分支（也可以把远程分支合并到master，但是必须是你把自己分支推送到了远程分支）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>注意:</strong></p>
@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/30/初识GIT/" data-id="cjrj529e8000484tlfnm04p5e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/初识GIT/" data-id="cjrkbyiz30005ustlyyn8pund" class="article-share-link">Share</a>
       
       
     </footer>
@@ -111,7 +111,7 @@
     <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/30/hello-world/" class="article-date">
-  <time datetime="2019-01-30T11:20:07.440Z" itemprop="datePublished">2019-01-30</time>
+  <time datetime="2019-01-30T11:50:12.397Z" itemprop="datePublished">2019-01-30</time>
 </a>
     
   </div>
@@ -143,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/30/hello-world/" data-id="cjrj3tzql0000sotllxkfksh0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/30/hello-world/" data-id="cjrkbyiyv0001ustlti51fc8d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -153,9 +153,9 @@
 
 
   
-    <article id="post-php7安装使用xhprof." class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-php7安装使用xhprof" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/03/php7安装使用xhprof./" class="article-date">
+    <a href="/2018/07/03/php7安装使用xhprof/" class="article-date">
   <time datetime="2018-07-03T08:51:00.000Z" itemprop="datePublished">2018-07-03</time>
 </a>
     
@@ -167,7 +167,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/php7安装使用xhprof./">php7 安装使用Xhprof</a>
+      <a class="article-title" href="/2018/07/03/php7安装使用xhprof/">php7 安装使用Xhprof</a>
     </h1>
   
 
@@ -214,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/03/php7安装使用xhprof./" data-id="cjrj529do000084tltdpdx184" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/03/php7安装使用xhprof/" data-id="cjrkbyiz10003ustlgp8swgtv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -224,9 +224,9 @@
 
 
   
-    <article id="post-redis安装." class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-redis安装" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/03/redis安装./" class="article-date">
+    <a href="/2018/07/03/redis安装/" class="article-date">
   <time datetime="2018-07-03T08:51:00.000Z" itemprop="datePublished">2018-07-03</time>
 </a>
     
@@ -238,7 +238,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/redis安装./">Redis安装</a>
+      <a class="article-title" href="/2018/07/03/redis安装/">Redis安装</a>
     </h1>
   
 
@@ -264,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/03/redis安装./" data-id="cjrj529e7000384tljyqjc6j8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/03/redis安装/" data-id="cjrkbyiz20004ustlcromf3m5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -274,9 +274,9 @@
 
 
   
-    <article id="post-mongod安装." class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-mongod安装" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/03/mongod安装./" class="article-date">
+    <a href="/2018/07/03/mongod安装/" class="article-date">
   <time datetime="2018-07-03T07:51:00.000Z" itemprop="datePublished">2018-07-03</time>
 </a>
     
@@ -288,7 +288,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/mongod安装./">MongoDB安装</a>
+      <a class="article-title" href="/2018/07/03/mongod安装/">MongoDB安装</a>
     </h1>
   
 
@@ -327,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/03/mongod安装./" data-id="cjrj529e1000284tln7jrea7k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/03/mongod安装/" data-id="cjrkbyiyy0002ustlcyh15bn6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -337,9 +337,9 @@
 
 
   
-    <article id="post-从命令行运行CLI版本的PHP，可能会有一下错误." class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-从命令行运行CLI版本的PHP，可能会有一下错误" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/01/11/从命令行运行CLI版本的PHP，可能会有一下错误./" class="article-date">
+    <a href="/2018/01/11/从命令行运行CLI版本的PHP，可能会有一下错误/" class="article-date">
   <time datetime="2018-01-11T13:00:37.550Z" itemprop="datePublished">2018-01-11</time>
 </a>
     
@@ -360,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/从命令行运行CLI版本的PHP，可能会有一下错误./" data-id="cjrj529ea000584tli3pcus2u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/从命令行运行CLI版本的PHP，可能会有一下错误/" data-id="cjrkbyiz40006ustlkhhps9ir" class="article-share-link">Share</a>
       
       
     </footer>
@@ -417,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/CodeIgniter3.0的session问题/" data-id="cjrj529dy000184tl5k5qxqm8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/03/CodeIgniter3.0的session问题/" data-id="cjrkbyiyp0000ustlhvfxtndx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -434,13 +434,6 @@
           <aside id="sidebar">
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"></ul>
-    </div>
-  </div>
-
 
   
     
@@ -465,7 +458,7 @@
       <ul>
         
           <li>
-            <a href="/2019/01/30/初识GIT/">初识 “GIT”</a>
+            <a href="/2019/01/31/初识GIT/">初识 “GIT”</a>
           </li>
         
           <li>
@@ -473,15 +466,15 @@
           </li>
         
           <li>
-            <a href="/2018/07/03/php7安装使用xhprof./">php7 安装使用Xhprof</a>
+            <a href="/2018/07/03/php7安装使用xhprof/">php7 安装使用Xhprof</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/redis安装./">Redis安装</a>
+            <a href="/2018/07/03/redis安装/">Redis安装</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/mongod安装./">MongoDB安装</a>
+            <a href="/2018/07/03/mongod安装/">MongoDB安装</a>
           </li>
         
       </ul>
