@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-初识GIT" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-php7 安装使用xhprof" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/31/初识GIT/" class="article-date">
-  <time datetime="2019-01-31T07:58:32.359Z" itemprop="datePublished">2019-01-31</time>
+    <a href="/2019/01/31/php7 安装使用xhprof/" class="article-date">
+  <time datetime="2019-01-31T08:00:05.000Z" itemprop="datePublished">2019-01-31</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/31/初识GIT/">初识 “GIT”</a>
+      <a class="article-title" href="/2019/01/31/php7 安装使用xhprof/">php7 安装使用Xhprof</a>
     </h1>
   
 
@@ -84,21 +84,263 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2019/01/31/初识GIT/git.jpg" alt="logo"><br><strong>1、把master同步到你自己的本地yongxin分支。</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 克隆项目到本地</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/ayoungcoder/ayoungcoder.github.io.git</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建自己的分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 拉取远程master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git pull</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把远程master合并到自己分支yongxin</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge master</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>2、提交本地yongxin分支到远程yongxin分支</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 切换到yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看文件状态</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git status </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加文件到暂存区</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git add .</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 提交到暂存区</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit -m ‘fix’</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送到远程的yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>3、本地分支合并到master，并调到远程master分支。</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 切换到master分支 </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把本地分支合并到master分支（也可以把远程分支合并到master，但是必须是你把自己分支推送到了远程分支）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>注意:</strong></p>
-<blockquote>
-<ul>
-<li>严格的代码管理，不允许每一个人都去合并master，应该有一个专人来去合并master。</li>
-<li>还要明白git是分布式的代码仓库管理，每个人都有本地master分支和远端的master分支，自己的分支也是这样。</li>
+        <ul>
+<li>PHP 7.0.13</li>
+<li>xhprof-master.zip</li>
 </ul>
-</blockquote>
+<h3 id="安装xhprof"><a href="#安装xhprof" class="headerlink" title="安装xhprof"></a><strong>安装xhprof</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> xhprof-master/extension/</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line"></span><br><span class="line">./configure  --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h3 id="配置xhprof"><a href="#配置xhprof" class="headerlink" title="配置xhprof"></a><strong>配置xhprof</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在php.ini中添加 </span></span><br><span class="line">extension=xhprof.so;</span><br></pre></td></tr></table></figure>
+<p>重启php-fpm，配置一个虚拟主机（xhprof.test.net）讲目录只想xhprof-master/xhprof_html，如果请求xhprof.test.net会列表出当前所有的分析的文件索引，点进去可以看到具体的分析内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 打开需要看到的分析信息，放在要分析的项目开始的位置</span><br><span class="line">xhprof_enable(XHPROF_FLAGS_NO_BUILTINS | XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY);</span><br><span class="line"></span><br><span class="line"># 放在项目结束的位置</span><br><span class="line">$xhprofData = xhprof_disable();</span><br><span class="line"></span><br><span class="line">require BASEPATH . &apos;global/Xhprof/utils/xhprof_lib.php&apos;;</span><br><span class="line">require BASEPATH . &apos;global/Xhprof/utils/xhprof_runs.php&apos;;</span><br><span class="line"></span><br><span class="line">$xhprofRuns = new XHProfRuns_Default();</span><br><span class="line">$runId = $xhprofRuns-&gt;save_run($xhprofData, &quot;xhprof_foo&quot;);</span><br><span class="line"></span><br><span class="line">echo &quot;http://xhprof.test.net/index.php?run=&#123;$runId&#125;&amp;source=xhprof_foo&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>报错</strong><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">failedto execute cmd：<span class="string">" dot -Tpng"</span>.stderr：sh： dot：<span class="built_in">command</span> not found</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装一个生成图的工具</span></span><br><span class="line">brew search graphviz</span><br><span class="line">brew install graphviz</span><br></pre></td></tr></table></figure></p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a><strong>补充</strong></h3><ul>
+<li><h5 id="Function-Name：方法名称。"><a href="#Function-Name：方法名称。" class="headerlink" title="Function Name：方法名称。"></a>Function Name：方法名称。</h5></li>
+<li><h5 id="Calls：方法被调用的次数。"><a href="#Calls：方法被调用的次数。" class="headerlink" title="Calls：方法被调用的次数。"></a>Calls：方法被调用的次数。</h5></li>
+<li><h5 id="Calls-：方法调用次数在同级方法总数调用次数中所占的百分比。"><a href="#Calls-：方法调用次数在同级方法总数调用次数中所占的百分比。" class="headerlink" title="Calls%：方法调用次数在同级方法总数调用次数中所占的百分比。"></a>Calls%：方法调用次数在同级方法总数调用次数中所占的百分比。</h5></li>
+<li><h5 id="Incl-Wall-Time-microsec-：方法执行花费的时间，包括子方法的执行时间。（单位：微秒）"><a href="#Incl-Wall-Time-microsec-：方法执行花费的时间，包括子方法的执行时间。（单位：微秒）" class="headerlink" title="Incl.Wall Time(microsec)：方法执行花费的时间，包括子方法的执行时间。（单位：微秒）"></a>Incl.Wall Time(microsec)：方法执行花费的时间，包括子方法的执行时间。（单位：微秒）</h5></li>
+<li><h5 id="IWall-：方法执行花费的时间百分比。"><a href="#IWall-：方法执行花费的时间百分比。" class="headerlink" title="IWall%：方法执行花费的时间百分比。"></a>IWall%：方法执行花费的时间百分比。</h5></li>
+<li><h5 id="Excl-Wall-Time-microsec-：方法本身执行花费的时间，不包括子方法的执行时间。（单位：微秒）"><a href="#Excl-Wall-Time-microsec-：方法本身执行花费的时间，不包括子方法的执行时间。（单位：微秒）" class="headerlink" title="Excl. Wall Time(microsec)：方法本身执行花费的时间，不包括子方法的执行时间。（单位：微秒）"></a>Excl. Wall Time(microsec)：方法本身执行花费的时间，不包括子方法的执行时间。（单位：微秒）</h5></li>
+<li><h5 id="EWall-：方法本身执行花费的时间百分比。"><a href="#EWall-：方法本身执行花费的时间百分比。" class="headerlink" title="EWall%：方法本身执行花费的时间百分比。"></a>EWall%：方法本身执行花费的时间百分比。</h5></li>
+<li><h5 id="Incl-CPU-microsecs-：方法执行花费的CPU时间，包括子方法的执行时间。（单位：微秒）"><a href="#Incl-CPU-microsecs-：方法执行花费的CPU时间，包括子方法的执行时间。（单位：微秒）" class="headerlink" title="Incl. CPU(microsecs)：方法执行花费的CPU时间，包括子方法的执行时间。（单位：微秒）"></a>Incl. CPU(microsecs)：方法执行花费的CPU时间，包括子方法的执行时间。（单位：微秒）</h5></li>
+<li><h5 id="ICpu-：方法执行花费的CPU时间百分比。"><a href="#ICpu-：方法执行花费的CPU时间百分比。" class="headerlink" title="ICpu%：方法执行花费的CPU时间百分比。"></a>ICpu%：方法执行花费的CPU时间百分比。</h5></li>
+<li><h5 id="Excl-CPU-microsec-：方法本身执行花费的CPU时间，不包括子方法的执行时间。（单位：微秒）"><a href="#Excl-CPU-microsec-：方法本身执行花费的CPU时间，不包括子方法的执行时间。（单位：微秒）" class="headerlink" title="Excl. CPU(microsec)：方法本身执行花费的CPU时间，不包括子方法的执行时间。（单位：微秒）"></a>Excl. CPU(microsec)：方法本身执行花费的CPU时间，不包括子方法的执行时间。（单位：微秒）</h5></li>
+<li><h5 id="ECPU-：方法本身执行花费的CPU时间百分比。"><a href="#ECPU-：方法本身执行花费的CPU时间百分比。" class="headerlink" title="ECPU%：方法本身执行花费的CPU时间百分比。"></a>ECPU%：方法本身执行花费的CPU时间百分比。</h5></li>
+<li><h5 id="Incl-MemUse-bytes-：方法执行占用的内存，包括子方法执行占用的内存。（单位：字节）"><a href="#Incl-MemUse-bytes-：方法执行占用的内存，包括子方法执行占用的内存。（单位：字节）" class="headerlink" title="Incl.MemUse(bytes)：方法执行占用的内存，包括子方法执行占用的内存。（单位：字节）"></a>Incl.MemUse(bytes)：方法执行占用的内存，包括子方法执行占用的内存。（单位：字节）</h5></li>
+<li><h5 id="IMemUse-：方法执行占用的内存百分比。"><a href="#IMemUse-：方法执行占用的内存百分比。" class="headerlink" title="IMemUse%：方法执行占用的内存百分比。"></a>IMemUse%：方法执行占用的内存百分比。</h5></li>
+<li><h5 id="Excl-MemUse-bytes-：方法本身执行占用的内存，不包括子方法执行占用的内存。（单位：字节）"><a href="#Excl-MemUse-bytes-：方法本身执行占用的内存，不包括子方法执行占用的内存。（单位：字节）" class="headerlink" title="Excl.MemUse(bytes)：方法本身执行占用的内存，不包括子方法执行占用的内存。（单位：字节）"></a>Excl.MemUse(bytes)：方法本身执行占用的内存，不包括子方法执行占用的内存。（单位：字节）</h5></li>
+<li><h5 id="EMemUse-：方法本身执行占用的内存百分比。"><a href="#EMemUse-：方法本身执行占用的内存百分比。" class="headerlink" title="EMemUse%：方法本身执行占用的内存百分比。"></a>EMemUse%：方法本身执行占用的内存百分比。</h5></li>
+<li><h5 id="Incl-PeakMemUse-bytes-：Incl-MemUse峰值。（单位：字节）"><a href="#Incl-PeakMemUse-bytes-：Incl-MemUse峰值。（单位：字节）" class="headerlink" title="Incl.PeakMemUse(bytes)：Incl.MemUse峰值。（单位：字节）"></a>Incl.PeakMemUse(bytes)：Incl.MemUse峰值。（单位：字节）</h5></li>
+<li><h5 id="IPeakMemUse-：Incl-MemUse峰值百分比。"><a href="#IPeakMemUse-：Incl-MemUse峰值百分比。" class="headerlink" title="IPeakMemUse%：Incl.MemUse峰值百分比。"></a>IPeakMemUse%：Incl.MemUse峰值百分比。</h5></li>
+<li><h5 id="Excl-PeakMemUse-bytes-：Excl-MemUse峰值。单位：（字节）"><a href="#Excl-PeakMemUse-bytes-：Excl-MemUse峰值。单位：（字节）" class="headerlink" title="Excl.PeakMemUse(bytes)：Excl.MemUse峰值。单位：（字节）"></a>Excl.PeakMemUse(bytes)：Excl.MemUse峰值。单位：（字节）</h5></li>
+<li><h5 id="EPeakMemUse-：Excl-MemUse峰值百分比。"><a href="#EPeakMemUse-：Excl-MemUse峰值百分比。" class="headerlink" title="EPeakMemUse%：Excl.MemUse峰值百分比。"></a>EPeakMemUse%：Excl.MemUse峰值百分比。</h5></li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/初识GIT/" data-id="cjrkbyiz30005ustlyyn8pund" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/php7 安装使用xhprof/" data-id="cjrkeyriy00026itlm13hqizu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mongod安装" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/31/mongod安装/" class="article-date">
+  <time datetime="2019-01-31T08:00:04.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/31/mongod安装/">php7 安装MongoDB扩展</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>PHP 7.0.13、PHP 7.0.30</li>
+<li>MongoDB shell version v3.4.2</li>
+<li>mongodb-1.1.9.tgz</li>
+</ul>
+<h3 id="MongoDB-安装"><a href="#MongoDB-安装" class="headerlink" title="MongoDB 安装"></a><strong>MongoDB 安装</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入安装目录</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载</span></span><br><span class="line">sudo curl -O https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.4.2.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">sudo tar -zxvf mongodb-osx-x86_64-3.4.2.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名</span></span><br><span class="line">sudo mv mongodb-osx-x86_64-3.4.2 mongodb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加到 PATH 路径中</span></span><br><span class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/mongodb/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建数据库目录</span></span><br><span class="line">sudo mkdir -p /data/db</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">sudo mongod</span><br><span class="line">sudo mongod  -f /usr/<span class="built_in">local</span>/etc/mongo.conf —fork --logpath /usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/mongodb/mongo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动终端</span></span><br><span class="line">./mongo</span><br><span class="line">mongo localhost:27017/<span class="built_in">test</span></span><br><span class="line">mongo —nodb	</span><br><span class="line">mongo —norc</span><br></pre></td></tr></table></figure>
+<h3 id="PHP编译MongoDB扩展"><a href="#PHP编译MongoDB扩展" class="headerlink" title="PHP编译MongoDB扩展"></a><strong>PHP编译MongoDB扩展</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入安装目录</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载</span></span><br><span class="line">sudo curl -O http://pecl.php.net/get/mongodb-1.1.9.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">sudo tar -zxvf mongodb-1.1.9.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line"><span class="built_in">cd</span> mongodb-1.1.9/</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/php7/bin/phpize</span><br><span class="line"></span><br><span class="line">sudo ./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#  编译时报错 configure: error: Cannot find OpenSSL's &lt;evp.h&gt;.  需要指定你的openssl的目录、如果没有brew安装即可</span></span><br><span class="line"></span><br><span class="line">sudo ./configure </span><br><span class="line">	--with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config	</span><br><span class="line">	--with-openssl-dir=/usr/<span class="built_in">local</span>/Cellar/openssl/1.0.2l</span><br><span class="line"></span><br><span class="line">sudo make</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时也生成了一个扩展包(用这个)</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mongodb-1.1.9/mongodb-1.1.9/modules</span><br><span class="line">	</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这时又生成了一个扩展包</span></span><br><span class="line">/usr/<span class="built_in">local</span>/Cellar/php@7.0/7.0.30_1/pecl/20151012</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置文件添加扩展</span></span><br><span class="line">vim /usr/<span class="built_in">local</span>/php7/etc/php.ini</span><br><span class="line">extension=mongodb.so</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启php-fpm</span></span><br><span class="line">lsof -P | grep <span class="string">':9000'</span> | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9 或者 pkill php-fpm</span><br><span class="line"></span><br><span class="line">sudo /usr/<span class="built_in">local</span>/php7/sbin/php-fpm</span><br></pre></td></tr></table></figure>
+<h3 id="提示：php7中使用mongodb根据旧版本使用上有些区别，是因为旧版的php-mongo-dll才是使用MongoClient类来实现连接，新版的php-mongodb-dll是使用-MongoDB-Driver-Manager来连接的；注意该类命名空间不能省略。"><a href="#提示：php7中使用mongodb根据旧版本使用上有些区别，是因为旧版的php-mongo-dll才是使用MongoClient类来实现连接，新版的php-mongodb-dll是使用-MongoDB-Driver-Manager来连接的；注意该类命名空间不能省略。" class="headerlink" title="提示：php7中使用mongodb根据旧版本使用上有些区别，是因为旧版的php_mongo.dll才是使用MongoClient类来实现连接，新版的php_mongodb.dll是使用 MongoDB\Driver\Manager来连接的；注意该类命名空间不能省略。"></a><strong>提示</strong>：php7中使用mongodb根据旧版本使用上有些区别，是因为旧版的php_mongo.dll才是使用MongoClient类来实现连接，新版的php_mongodb.dll是使用 MongoDB\Driver\Manager来连接的；注意该类命名空间不能省略。</h3><p><strong>参考</strong>：<a href="http://php.net/manual/en/class.mongodb-driver-manager.php" target="_blank" rel="noopener">http://php.net/manual/en/class.mongodb-driver-manager.php</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/31/mongod安装/" data-id="cjrkcjqdr000328tluw5coxuf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-php7 安装redis扩展" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/31/php7 安装redis扩展/" class="article-date">
+  <time datetime="2019-01-31T05:00:00.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/31/php7 安装redis扩展/">php7 安装redis扩展</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>PHP 7.0.13</li>
+<li>phpredis-php7.zip</li>
+</ul>
+<h3 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a><strong>Redis安装</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装redis</span></span><br><span class="line">brew install redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动redis</span></span><br><span class="line">redis-server /usr/<span class="built_in">local</span>/etc/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动终端</span></span><br><span class="line">redis-cli</span><br></pre></td></tr></table></figure>
+<h3 id="PHP编译Redis扩展"><a href="#PHP编译Redis扩展" class="headerlink" title="PHP编译Redis扩展"></a><strong>PHP编译Redis扩展</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 依赖一下两个库</span></span><br><span class="line">sudo brew install m4  （可省略）</span><br><span class="line">sudo brew install autoconf</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line"></span><br><span class="line">unzip phpredis-php7</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> phpredis-php7</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line"></span><br><span class="line">sudo ./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line"></span><br><span class="line">sudo make</span><br><span class="line"></span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/31/php7 安装redis扩展/" data-id="cjrkey5wh00006itl3ue9atls" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-从命令行运行CLI版本的PHP时" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/31/从命令行运行CLI版本的PHP时/" class="article-date">
+  <time datetime="2019-01-31T04:00:02.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/31/从命令行运行CLI版本的PHP时/">从命令行运行CLI版本的PHP时!</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从命令行运行CLI版本的PHP时，可能会收到以下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">PHP Warning:  Module &apos;memcached&apos; already loaded in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: Module &apos;memcached&apos; already loaded in Unknown on line 0</span><br><span class="line">PHP Warning:  Module &apos;redis&apos; already loaded in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: Module &apos;redis&apos; already loaded in Unknown on line 0</span><br><span class="line">End 2018-01-11 20:15:14 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A PHP Error was encountered</span><br><span class="line"></span><br><span class="line">Severity:    Core Warning</span><br><span class="line">Message:     Module &apos;redis&apos; already loaded</span><br><span class="line">Filename:    Unknown</span><br><span class="line">Line Number: 0</span><br><span class="line"></span><br><span class="line">Backtrace:</span><br></pre></td></tr></table></figure></p>
+<p><strong>原因：</strong><br>有两种方法可以在PHP中加载大多数扩展。一种是直接将扩展编译到PHP二进制文件中。另一个是通过一个ini文件动态加载一个共享扩展。错误表明动态扩展正在通过.ini文件加载，即使它们已经被编译到PHP二进制文件中。</p>
+<p><strong>解决：</strong><br>为了解决这个问题，你必须编辑你的php.ini（或extensions.ini）文件并注释掉已经编译的扩展。例如，在编辑之后，您的ini文件可能如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">;extension=redis.so</span><br><span class="line">;extension=memcache.so</span><br></pre></td></tr></table></figure></p>
+<p>您也可以删除这些行，而不是将其注释掉。一旦你禁用这些线路，运行php -v，看看是否警告消失。</p>
+<p><strong>补充：</strong><br>要查看哪些扩展被编译到您的PHP二进制文件中，请运行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -m</span><br></pre></td></tr></table></figure></p>
+<p>您还可以查看configure命令，该命令将显示启用和编译哪些扩展，或构建为共享的动态模块。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -i | grep extension</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/31/从命令行运行CLI版本的PHP时/" data-id="cjrkeyf0800016itlvqqeic9i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CodeIgniter3.0的session问题" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/31/CodeIgniter3.0的session问题/" class="article-date">
+  <time datetime="2019-01-31T03:00:00.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/31/CodeIgniter3.0的session问题/">CodeIgniter3.0的session问</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从工作就开始接触CodeIgniter，惭愧的是没有深入的了解这个框架的特性，以及优缺点。突然间要要用3.0版本开发，在搭建项目的时候遇到一个session的问题。</p>
+<p>CodeIgniter框架中的默认的session驱动为files，当我配置好项目后，我的<strong>$config[‘sess_save_path’]</strong>为默认值<strong>NULL</strong>，所以在写入session时候报错，原因就是在创建session目录的时候sess_save_path为空，让我很费解，别人没有修改过该参数，依然可以成功创建session目录并且木有报错。</p>
+<p><strong>在官网的文档中看到了下面这一段</strong></p>
+<p><a href="http://codeigniter.org.cn/user_guide/libraries/sessions.html" target="_blank" rel="noopener">http://codeigniter.org.cn/user_guide/libraries/sessions.html</a></p>
+<p>Session 类自带了 4 种不同的驱动（或叫做存储引擎）可供使用：</p>
+<ul>
+<li>files</li>
+<li>database</li>
+<li>redis</li>
+<li>memcached</li>
+</ul>
+<p>默认情况下，初始化 session 时将使用 文件驱动 ，因为这是最安全的选择，可以在所有地方按预期工作 （几乎所有的环境下都有文件系统）。</p>
+<p>文件驱动利用你的文件系统来存储 session 数据。</p>
+<p>可以说，文件驱动和 PHP 自带的默认 session 实现非常类似，但是有一个很重要的细节要注意的是， 实际上它们的代码并不相同，而且有一些局限性（以及优势）。</p>
+<p>说的更具体点，它不支持 PHP 的 session.save_path 参数的 目录分级（directory level）和 mode 格式 ， 另外为了安全性大多数的参数都被硬编码。只提供了 $config[‘sess_save_path’] 参数用于设置绝对路径。</p>
+<p>另一个很重要的事情是，确保存储 session 文件的目录不能被公开访问到或者是共享目录，确保 只有你 能访问并查看配置的 sess_save_path 目录中的内容。否则，如果任何人都能访问， 他们就可以从中窃取到当前的 session （这也被称为 session 固定（session fixation）攻击）</p>
+<p>在类 UNIX 操作系统中，这可以通过在该目录上执行 chmod 命令，将权限设置为 0700 来实现， 这样就可以只允许目录的所有者执行读取和写入操作。但是要注意的是，脚本的执行者通常不是你自己， 而是类似于 ‘www-data’ 这样的用户，所以只设置权限可能会破坏你的程序。</p>
+<p>根据你的环境，你应该像下面这样来操作。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /&lt;path to your application directory&gt;/sessions/</span><br><span class="line">chmod 0700 /&lt;path to your application directory&gt;/sessions/</span><br><span class="line">chown www-data /&lt;path to your application directory&gt;/sessions/</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/31/CodeIgniter3.0的session问题/" data-id="cjrkcjqdg000028tlaipdwksn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-初识GIT" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/31/初识GIT/" class="article-date">
+  <time datetime="2019-01-31T02:00:01.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/31/初识GIT/">初识 Git</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/2019/01/31/初识GIT/Git命令.jpg" alt=""></p>
+<h4 id="一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支"><a href="#一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支" class="headerlink" title="一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支"></a>一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、克隆项目到本地</span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/ayoungcoder/ayoungcoder.github.io.git</span></span><br><span class="line"></span><br><span class="line">2、创建本地分支</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b <span class="built_in">local</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支"><a href="#二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支" class="headerlink" title="二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支"></a>二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1、查看文件状态</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line">2、添加文件到暂存区</span><br><span class="line">git add file1 file2 file3 ...</span><br><span class="line"></span><br><span class="line">3、提交文件到本地分支</span><br><span class="line">git commit -m '注视（必填）'</span><br><span class="line"></span><br><span class="line">4、切换到主分支</span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line">5、先拉取主分支最新代码</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line">6、解决好冲突后合并代码</span><br><span class="line">git merge local</span><br><span class="line"></span><br><span class="line">7、代码推送到master远程分支</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h4 id="三、只提交想提交的（例如：当有一个文件修改需要区别你当前分支先提交，而且修改不大没必要创建新分支）"><a href="#三、只提交想提交的（例如：当有一个文件修改需要区别你当前分支先提交，而且修改不大没必要创建新分支）" class="headerlink" title="三、只提交想提交的（例如：当有一个文件修改需要区别你当前分支先提交，而且修改不大没必要创建新分支）"></a>三、只提交想提交的（例如：当有一个文件修改需要区别你当前分支先提交，而且修改不大没必要创建新分支）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">1、查看文件状态</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line">2、添加文件到暂存区</span><br><span class="line">git add . </span><br><span class="line">git add file1 file2 file3 ...</span><br><span class="line"></span><br><span class="line">3、提交文件到本地分支</span><br><span class="line">git commit -m '注视（必填）'</span><br><span class="line"></span><br><span class="line">4、暂存不需要merge的其他文件</span><br><span class="line">git stash</span><br><span class="line"></span><br><span class="line">5、切换到主分支</span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line">6、先拉取主分支最新代码</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line">7、解决好冲突后合并代码</span><br><span class="line">git merge local</span><br><span class="line"></span><br><span class="line">8、代码推送到master远程分支</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">9、切换回本地分支</span><br><span class="line">git checkout local</span><br><span class="line"></span><br><span class="line">10、还原之前没有开发完成的文件</span><br><span class="line">git stash apply</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/31/初识GIT/" data-id="cjrkcjqdw000828tlacdbv52i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -110,8 +352,8 @@
   
     <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/30/hello-world/" class="article-date">
-  <time datetime="2019-01-30T11:50:12.397Z" itemprop="datePublished">2019-01-30</time>
+    <a href="/2019/01/31/hello-world/" class="article-date">
+  <time datetime="2019-01-31T01:00:00.000Z" itemprop="datePublished">2019-01-31</time>
 </a>
     
   </div>
@@ -122,7 +364,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/30/hello-world/">Hello World</a>
+      <a class="article-title" href="/2019/01/31/hello-world/">Hello World</a>
     </h1>
   
 
@@ -143,281 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/30/hello-world/" data-id="cjrkbyiyv0001ustlti51fc8d" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-php7安装使用xhprof" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/03/php7安装使用xhprof/" class="article-date">
-  <time datetime="2018-07-03T08:51:00.000Z" itemprop="datePublished">2018-07-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/php7安装使用xhprof/">php7 安装使用Xhprof</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>PHP 7.0.13</li>
-<li>xhprof-master.zip</li>
-</ul>
-<p><strong>安装xhprof</strong></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> xhprof-master/extension/</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line"></span><br><span class="line">./configure  --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<p><strong>配置xhprof</strong><br>在php.ini中添加<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=xhprof.so;</span><br></pre></td></tr></table></figure></p>
-<p>重启php-fpm </p>
-<p>配置一个虚拟主机（xhprof.test.net）讲目录只想xhprof-master/xhprof_html</p>
-<p>如果请求xhprof.test.net会列表出当前所有的分析的文件索引，点进去可以看到具体的分析内容。</p>
-<p><strong>我是在ci框架中使用</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开需要看到的分析信息，放在要分析的项目开始的位置</span></span><br><span class="line">xhprof_enable(XHPROF_FLAGS_NO_BUILTINS | XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 放在项目结束的位置</span></span><br><span class="line">$xhprofData = xhprof_disable();</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> BASEPATH . <span class="string">'global/Xhprof/utils/xhprof_lib.php'</span>;</span><br><span class="line"><span class="keyword">require</span> BASEPATH . <span class="string">'global/Xhprof/utils/xhprof_runs.php'</span>;</span><br><span class="line"></span><br><span class="line">$xhprofRuns = <span class="keyword">new</span> XHProfRuns_Default();</span><br><span class="line">$runId = $xhprofRuns-&gt;save_run($xhprofData, <span class="string">"xhprof_foo"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"http://xhprof.test.net/index.php?run=&#123;$runId&#125;&amp;source=xhprof_foo"</span></span><br></pre></td></tr></table></figure>
-<p><strong>报错</strong><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">failedto execute cmd：<span class="string">" dot -Tpng"</span>.stderr：sh： dot：<span class="built_in">command</span> not found</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装一个生成图的工具</span></span><br><span class="line">brew search graphviz</span><br><span class="line">brew install graphviz</span><br></pre></td></tr></table></figure></p>
-<p><strong>补充</strong></p>
-<ul>
-<li>Function Name：方法名称。</li>
-<li>Calls：方法被调用的次数。</li>
-<li>Calls%：方法调用次数在同级方法总数调用次数中所占的百分比。</li>
-<li>Incl.Wall Time(microsec)：方法执行花费的时间，包括子方法的执行时间。（单位：微秒）</li>
-<li>IWall%：方法执行花费的时间百分比。</li>
-<li>Excl. Wall Time(microsec)：方法本身执行花费的时间，不包括子方法的执行时间。（单位：微秒）</li>
-<li>EWall%：方法本身执行花费的时间百分比。</li>
-<li>Incl. CPU(microsecs)：方法执行花费的CPU时间，包括子方法的执行时间。（单位：微秒）</li>
-<li>ICpu%：方法执行花费的CPU时间百分比。</li>
-<li>Excl. CPU(microsec)：方法本身执行花费的CPU时间，不包括子方法的执行时间。（单位：微秒）</li>
-<li>ECPU%：方法本身执行花费的CPU时间百分比。</li>
-<li>Incl.MemUse(bytes)：方法执行占用的内存，包括子方法执行占用的内存。（单位：字节）</li>
-<li>IMemUse%：方法执行占用的内存百分比。</li>
-<li>Excl.MemUse(bytes)：方法本身执行占用的内存，不包括子方法执行占用的内存。（单位：字节）</li>
-<li>EMemUse%：方法本身执行占用的内存百分比。</li>
-<li>Incl.PeakMemUse(bytes)：Incl.MemUse峰值。（单位：字节）</li>
-<li>IPeakMemUse%：Incl.MemUse峰值百分比。</li>
-<li>Excl.PeakMemUse(bytes)：Excl.MemUse峰值。单位：（字节）</li>
-<li>EPeakMemUse%：Excl.MemUse峰值百分比。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/03/php7安装使用xhprof/" data-id="cjrkbyiz10003ustlgp8swgtv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-redis安装" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/03/redis安装/" class="article-date">
-  <time datetime="2018-07-03T08:51:00.000Z" itemprop="datePublished">2018-07-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/redis安装/">Redis安装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#Redis安装</p>
-<p># 安装redis<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install redis</span><br></pre></td></tr></table></figure></p>
-<p># 启动redis服务<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis-server /usr/<span class="built_in">local</span>/etc/redis.conf</span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line">\<span class="comment"># 启动终端</span></span><br><span class="line">```sh</span><br><span class="line">redis-cli</span><br></pre></td></tr></table></figure></p>
-<p>#PHP编译Redis扩展</p>
-<blockquote>
-<ul>
-<li>PHP 7.0.13</li>
-<li>phpredis-php7.zip</li>
-</ul>
-</blockquote>
-<p># 进入<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure></p>
-<p># 解压<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip phpredis-php7</span><br></pre></td></tr></table></figure></p>
-<p># 编译<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> phpredis-php7</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line"></span><br><span class="line">sudo ./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line"></span><br><span class="line">sudo make</span><br><span class="line"></span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></p>
-<p># 依赖<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo brew install m4  （可省略）</span><br><span class="line">sudo brew install autoconf</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/03/redis安装/" data-id="cjrkbyiz20004ustlcromf3m5" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-mongod安装" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/03/mongod安装/" class="article-date">
-  <time datetime="2018-07-03T07:51:00.000Z" itemprop="datePublished">2018-07-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/mongod安装/">MongoDB安装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#MongoDB 安装</p>
-<p># 安装目录<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure></p>
-<p># 下载<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -O https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.4.2.tgz</span><br></pre></td></tr></table></figure></p>
-<p># 解压<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf mongodb-osx-x86_64-3.4.2.tgz</span><br></pre></td></tr></table></figure></p>
-<p># 重命名<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv mongodb-osx-x86_64-3.4.2 mongodb</span><br></pre></td></tr></table></figure></p>
-<p># 添加到 PATH 路径中<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/mongodb/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></p>
-<p># 创建数据库目录<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /data/db</span><br></pre></td></tr></table></figure></p>
-<p># 启动服务<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mongod</span><br><span class="line">sudo mongod  -f /usr/<span class="built_in">local</span>/etc/mongo.conf —fork --logpath /usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/mongodb/mongo.log</span><br></pre></td></tr></table></figure></p>
-<p># 启动终端<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./mongo</span><br><span class="line">mongo localhost:27017/<span class="built_in">test</span></span><br><span class="line">mongo —nodb	</span><br><span class="line">mongo —norc</span><br></pre></td></tr></table></figure></p>
-<h1 id="PHP编译MongoDB扩展"><a href="#PHP编译MongoDB扩展" class="headerlink" title="PHP编译MongoDB扩展"></a>PHP编译MongoDB扩展</h1><blockquote>
-<ul>
-<li>PHP 7.0.13、PHP 7.0.30</li>
-<li>MongoDB shell version v3.4.2</li>
-<li>mongodb-1.1.9.tgz</li>
-</ul>
-</blockquote>
-<p># 进入<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure></p>
-<p># 下载<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -O http://pecl.php.net/get/mongodb-1.1.9.tgz</span><br></pre></td></tr></table></figure></p>
-<p># 解压<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf mongodb-1.1.9.tgz</span><br></pre></td></tr></table></figure></p>
-<p># 编译<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> mongodb-1.1.9/</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/php7/bin/phpize</span><br><span class="line"></span><br><span class="line">sudo ./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br></pre></td></tr></table></figure></p>
-<p>#  configure: error: Cannot find OpenSSL’s &lt;evp.h&gt;.  需要制定你的openssl的目录缺少brew安装即可<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo ./configure </span><br><span class="line">	--with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config	</span><br><span class="line">	--with-openssl-dir=/usr/<span class="built_in">local</span>/Cellar/openssl/1.0.2l</span><br><span class="line"></span><br><span class="line">sudo make</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时也生成了一个扩展包(用这个)</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mongodb-1.1.9/mongodb-1.1.9/modules</span><br><span class="line">	</span><br><span class="line">sudo make install</span><br><span class="line"><span class="comment"># 这时又生成了一个扩展包</span></span><br><span class="line">/usr/<span class="built_in">local</span>/Cellar/php@7.0/7.0.30_1/pecl/20151012</span><br></pre></td></tr></table></figure></p>
-<p># 配置文件添加扩展<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/<span class="built_in">local</span>/php7/etc/php.ini</span><br><span class="line">extension=mongodb.so</span><br></pre></td></tr></table></figure></p>
-<p># 重启php-fpm<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lsof -P | grep <span class="string">':9000'</span> | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9</span><br><span class="line">sudo /usr/<span class="built_in">local</span>/php7/sbin/php-fpm</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p><strong>提示</strong>：php7中使用mongodb根据旧版本使用上有些区别，是因为旧版的php_mongo.dll才是使用MongoClient类来实现连接，新版的php_mongodb.dll是使用 MongoDB\Driver\Manager来连接的；注意该类命名空间不能省略。</p>
-</blockquote>
-<p><strong>参考</strong>：<a href="http://php.net/manual/en/class.mongodb-driver-manager.php" target="_blank" rel="noopener">http://php.net/manual/en/class.mongodb-driver-manager.php</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/03/mongod安装/" data-id="cjrkbyiyy0002ustlcyh15bn6" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-从命令行运行CLI版本的PHP，可能会有一下错误" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/11/从命令行运行CLI版本的PHP，可能会有一下错误/" class="article-date">
-  <time datetime="2018-01-11T13:00:37.550Z" itemprop="datePublished">2018-01-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="title-“从命令行运行CLI版本的PHP时，可能会收到以下错误-”"><a href="#title-“从命令行运行CLI版本的PHP时，可能会收到以下错误-”" class="headerlink" title="title:  “从命令行运行CLI版本的PHP时，可能会收到以下错误!”"></a>title:  “从命令行运行CLI版本的PHP时，可能会收到以下错误!”</h2><p>从命令行运行CLI版本的PHP时，可能会收到以下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">PHP Warning:  Module &apos;memcached&apos; already loaded in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: Module &apos;memcached&apos; already loaded in Unknown on line 0</span><br><span class="line">PHP Warning:  Module &apos;redis&apos; already loaded in Unknown on line 0</span><br><span class="line"></span><br><span class="line">Warning: Module &apos;redis&apos; already loaded in Unknown on line 0</span><br><span class="line">End 2018-01-11 20:15:14 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">A PHP Error was encountered</span><br><span class="line"></span><br><span class="line">Severity:    Core Warning</span><br><span class="line">Message:     Module &apos;redis&apos; already loaded</span><br><span class="line">Filename:    Unknown</span><br><span class="line">Line Number: 0</span><br><span class="line"></span><br><span class="line">Backtrace:</span><br></pre></td></tr></table></figure></p>
-<p><strong>原因：</strong><br>有两种方法可以在PHP中加载大多数扩展。一种是直接将扩展编译到PHP二进制文件中。另一个是通过一个ini文件动态加载一个共享扩展。错误表明动态扩展正在通过.ini文件加载，即使它们已经被编译到PHP二进制文件中。</p>
-<p><strong>解决：</strong><br>为了解决这个问题，你必须编辑你的php.ini（或extensions.ini）文件并注释掉已经编译的扩展。例如，在编辑之后，您的ini文件可能如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">;extension=redis.so</span><br><span class="line">;extension=memcache.so</span><br></pre></td></tr></table></figure></p>
-<p>您也可以删除这些行，而不是将其注释掉。一旦你禁用这些线路，运行php -v，看看是否警告消失。</p>
-<p><strong>补充：</strong><br>要查看哪些扩展被编译到您的PHP二进制文件中，请运行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -m</span><br></pre></td></tr></table></figure></p>
-<p>您还可以查看configure命令，该命令将显示启用和编译哪些扩展，或构建为共享的动态模块。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -i | grep extension</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/从命令行运行CLI版本的PHP，可能会有一下错误/" data-id="cjrkbyiz40006ustlkhhps9ir" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CodeIgniter3.0的session问题" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/03/CodeIgniter3.0的session问题/" class="article-date">
-  <time datetime="2018-01-03T13:48:02.873Z" itemprop="datePublished">2018-01-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/03/CodeIgniter3.0的session问题/">CodeIgniter3.0的session问</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>从工作就开始接触CodeIgniter，惭愧的是没有深入的了解这个框架的特性，以及优缺点。突然间要要用3.0版本开发，在搭建项目的时候遇到一个session的问题。</p>
-<p>CodeIgniter框架中的默认的session驱动为files，当我配置好项目后，我的<strong>$config[‘sess_save_path’]</strong>为默认值<strong>NULL</strong>，所以在写入session时候报错，原因就是在创建session目录的时候sess_save_path为空，让我很费解，别人没有修改过该参数，依然可以成功创建session目录并且木有报错。</p>
-<p><strong>在官网的文档中看到了下面这一段</strong></p>
-<p><a href="http://codeigniter.org.cn/user_guide/libraries/sessions.html" target="_blank" rel="noopener">http://codeigniter.org.cn/user_guide/libraries/sessions.html</a></p>
-<p>Session 类自带了 4 种不同的驱动（或叫做存储引擎）可供使用：</p>
-<blockquote>
-<ul>
-<li>files</li>
-<li>database</li>
-<li>redis</li>
-<li>memcached</li>
-</ul>
-</blockquote>
-<p>默认情况下，初始化 session 时将使用 文件驱动 ，因为这是最安全的选择，可以在所有地方按预期工作 （几乎所有的环境下都有文件系统）。</p>
-<p>文件驱动利用你的文件系统来存储 session 数据。</p>
-<p>可以说，文件驱动和 PHP 自带的默认 session 实现非常类似，但是有一个很重要的细节要注意的是， 实际上它们的代码并不相同，而且有一些局限性（以及优势）。</p>
-<p>说的更具体点，它不支持 PHP 的 session.save_path 参数的 目录分级（directory level）和 mode 格式 ， 另外为了安全性大多数的参数都被硬编码。只提供了 $config[‘sess_save_path’] 参数用于设置绝对路径。</p>
-<p>另一个很重要的事情是，确保存储 session 文件的目录不能被公开访问到或者是共享目录，确保 只有你 能访问并查看配置的 sess_save_path 目录中的内容。否则，如果任何人都能访问， 他们就可以从中窃取到当前的 session （这也被称为 session 固定（session fixation）攻击）</p>
-<p>在类 UNIX 操作系统中，这可以通过在该目录上执行 chmod 命令，将权限设置为 0700 来实现， 这样就可以只允许目录的所有者执行读取和写入操作。但是要注意的是，脚本的执行者通常不是你自己， 而是类似于 ‘www-data’ 这样的用户，所以只设置权限可能会破坏你的程序。</p>
-<p>根据你的环境，你应该像下面这样来操作。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /&lt;path to your application directory&gt;/sessions/</span><br><span class="line">chmod 0700 /&lt;path to your application directory&gt;/sessions/</span><br><span class="line">chown www-data /&lt;path to your application directory&gt;/sessions/</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/03/CodeIgniter3.0的session问题/" data-id="cjrkbyiyp0000ustlhvfxtndx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/hello-world/" data-id="cjrkcjqdo000228tlqlem6uhh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -445,7 +413,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -458,23 +426,23 @@
       <ul>
         
           <li>
-            <a href="/2019/01/31/初识GIT/">初识 “GIT”</a>
+            <a href="/2019/01/31/php7 安装使用xhprof/">php7 安装使用Xhprof</a>
           </li>
         
           <li>
-            <a href="/2019/01/30/hello-world/">Hello World</a>
+            <a href="/2019/01/31/mongod安装/">php7 安装MongoDB扩展</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/php7安装使用xhprof/">php7 安装使用Xhprof</a>
+            <a href="/2019/01/31/php7 安装redis扩展/">php7 安装redis扩展</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/redis安装/">Redis安装</a>
+            <a href="/2019/01/31/从命令行运行CLI版本的PHP时/">从命令行运行CLI版本的PHP时!</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/mongod安装/">MongoDB安装</a>
+            <a href="/2019/01/31/CodeIgniter3.0的session问题/">CodeIgniter3.0的session问</a>
           </li>
         
       </ul>

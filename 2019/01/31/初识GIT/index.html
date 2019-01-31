@@ -5,21 +5,21 @@
   
 
   
-  <title>初识 “GIT” | 落枫眠</title>
+  <title>初识 Git | 落枫眠</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、把master同步到你自己的本地yongxin分支。1234567891011121314151617# 克隆项目到本地$ git clone https://github.com/ayoungcoder/ayoungcoder.github.io.git# 创建自己的分支$ git checkout -b yongxin# 切换到master$ git checkout master# 拉取">
+  <meta name="description" content="一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支123451、克隆项目到本地$ git clone https://github.com/ayoungcoder/ayoungcoder.github.io.git2、创建本地分支$ git checkout -b local 二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支1234567891011">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初识 “GIT”">
+<meta property="og:title" content="初识 Git">
 <meta property="og:url" content="http://yoursite.com/2019/01/31/初识GIT/index.html">
 <meta property="og:site_name" content="落枫眠">
-<meta property="og:description" content="1、把master同步到你自己的本地yongxin分支。1234567891011121314151617# 克隆项目到本地$ git clone https://github.com/ayoungcoder/ayoungcoder.github.io.git# 创建自己的分支$ git checkout -b yongxin# 切换到master$ git checkout master# 拉取">
+<meta property="og:description" content="一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支123451、克隆项目到本地$ git clone https://github.com/ayoungcoder/ayoungcoder.github.io.git2、创建本地分支$ git checkout -b local 二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支1234567891011">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/01/31/初识GIT/git.jpg">
-<meta property="og:updated_time" content="2019-01-31T07:58:32.359Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/31/初识GIT/Git命令.jpg">
+<meta property="og:updated_time" content="2019-01-31T09:40:43.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初识 “GIT”">
-<meta name="twitter:description" content="1、把master同步到你自己的本地yongxin分支。1234567891011121314151617# 克隆项目到本地$ git clone https://github.com/ayoungcoder/ayoungcoder.github.io.git# 创建自己的分支$ git checkout -b yongxin# 切换到master$ git checkout master# 拉取">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/31/初识GIT/git.jpg">
+<meta name="twitter:title" content="初识 Git">
+<meta name="twitter:description" content="一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支123451、克隆项目到本地$ git clone https://github.com/ayoungcoder/ayoungcoder.github.io.git2、创建本地分支$ git checkout -b local 二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支1234567891011">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/31/初识GIT/Git命令.jpg">
   
     <link rel="alternate" href="/atom.xml" title="落枫眠" type="application/atom+xml">
   
@@ -69,7 +69,7 @@
         <section id="main"><article id="post-初识GIT" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/31/初识GIT/" class="article-date">
-  <time datetime="2019-01-31T07:58:32.359Z" itemprop="datePublished">2019-01-31</time>
+  <time datetime="2019-01-31T02:00:01.000Z" itemprop="datePublished">2019-01-31</time>
 </a>
     
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      初识 “GIT”
+      初识 Git
     </h1>
   
 
@@ -88,21 +88,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2019/01/31/初识GIT/git.jpg" alt="logo"><br><strong>1、把master同步到你自己的本地yongxin分支。</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 克隆项目到本地</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/ayoungcoder/ayoungcoder.github.io.git</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建自己的分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 拉取远程master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git pull</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把远程master合并到自己分支yongxin</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge master</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>2、提交本地yongxin分支到远程yongxin分支</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 切换到yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看文件状态</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git status </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加文件到暂存区</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git add .</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 提交到暂存区</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit -m ‘fix’</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送到远程的yongxin分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>3、本地分支合并到master，并调到远程master分支。</strong><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 切换到master分支 </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把本地分支合并到master分支（也可以把远程分支合并到master，但是必须是你把自己分支推送到了远程分支）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge yongxin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>注意:</strong></p>
-<blockquote>
-<ul>
-<li>严格的代码管理，不允许每一个人都去合并master，应该有一个专人来去合并master。</li>
-<li>还要明白git是分布式的代码仓库管理，每个人都有本地master分支和远端的master分支，自己的分支也是这样。</li>
-</ul>
-</blockquote>
-
+        <p><img src="/2019/01/31/初识GIT/Git命令.jpg" alt=""></p>
+<h4 id="一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支"><a href="#一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支" class="headerlink" title="一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支"></a>一、创建本地分支，某一个版本过来第一就是先检出一个自己的分支</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、克隆项目到本地</span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/ayoungcoder/ayoungcoder.github.io.git</span></span><br><span class="line"></span><br><span class="line">2、创建本地分支</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b <span class="built_in">local</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支"><a href="#二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支" class="headerlink" title="二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支"></a>二、提交代码一般流程，注意尽量少操作master分支，master分支一般是线上分支</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1、查看文件状态</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line">2、添加文件到暂存区</span><br><span class="line">git add file1 file2 file3 ...</span><br><span class="line"></span><br><span class="line">3、提交文件到本地分支</span><br><span class="line">git commit -m '注视（必填）'</span><br><span class="line"></span><br><span class="line">4、切换到主分支</span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line">5、先拉取主分支最新代码</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line">6、解决好冲突后合并代码</span><br><span class="line">git merge local</span><br><span class="line"></span><br><span class="line">7、代码推送到master远程分支</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h4 id="三、只提交想提交的（例如：当有一个文件修改需要区别你当前分支先提交，而且修改不大没必要创建新分支）"><a href="#三、只提交想提交的（例如：当有一个文件修改需要区别你当前分支先提交，而且修改不大没必要创建新分支）" class="headerlink" title="三、只提交想提交的（例如：当有一个文件修改需要区别你当前分支先提交，而且修改不大没必要创建新分支）"></a>三、只提交想提交的（例如：当有一个文件修改需要区别你当前分支先提交，而且修改不大没必要创建新分支）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">1、查看文件状态</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line">2、添加文件到暂存区</span><br><span class="line">git add . </span><br><span class="line">git add file1 file2 file3 ...</span><br><span class="line"></span><br><span class="line">3、提交文件到本地分支</span><br><span class="line">git commit -m '注视（必填）'</span><br><span class="line"></span><br><span class="line">4、暂存不需要merge的其他文件</span><br><span class="line">git stash</span><br><span class="line"></span><br><span class="line">5、切换到主分支</span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line">6、先拉取主分支最新代码</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line">7、解决好冲突后合并代码</span><br><span class="line">git merge local</span><br><span class="line"></span><br><span class="line">8、代码推送到master远程分支</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">9、切换回本地分支</span><br><span class="line">git checkout local</span><br><span class="line"></span><br><span class="line">10、还原之前没有开发完成的文件</span><br><span class="line">git stash apply</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/初识GIT/" data-id="cjrkbyiz30005ustlyyn8pund" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/初识GIT/" data-id="cjrkcjqdw000828tlacdbv52i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -111,8 +104,17 @@
     
 <nav id="article-nav">
   
+    <a href="/2019/01/31/CodeIgniter3.0的session问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CodeIgniter3.0的session问
+        
+      </div>
+    </a>
   
-    <a href="/2019/01/30/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2019/01/31/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Hello World</div>
     </a>
@@ -138,7 +140,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -151,23 +153,23 @@
       <ul>
         
           <li>
-            <a href="/2019/01/31/初识GIT/">初识 “GIT”</a>
+            <a href="/2019/01/31/php7 安装使用xhprof/">php7 安装使用Xhprof</a>
           </li>
         
           <li>
-            <a href="/2019/01/30/hello-world/">Hello World</a>
+            <a href="/2019/01/31/mongod安装/">php7 安装MongoDB扩展</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/php7安装使用xhprof/">php7 安装使用Xhprof</a>
+            <a href="/2019/01/31/php7 安装redis扩展/">php7 安装redis扩展</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/redis安装/">Redis安装</a>
+            <a href="/2019/01/31/从命令行运行CLI版本的PHP时/">从命令行运行CLI版本的PHP时!</a>
           </li>
         
           <li>
-            <a href="/2018/07/03/mongod安装/">MongoDB安装</a>
+            <a href="/2019/01/31/CodeIgniter3.0的session问题/">CodeIgniter3.0的session问</a>
           </li>
         
       </ul>
