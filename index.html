@@ -62,6 +62,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-解读IO多路复用技术" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/13/解读IO多路复用技术/" class="article-date">
+  <time datetime="2019-03-13T05:53:43.000Z" itemprop="datePublished">2019-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/13/解读IO多路复用技术/">解读IO多路复用技术</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>文章转载</strong> <a href="http://www.jianshu.com/p/db5da880154a" target="_blank" rel="noopener">http://www.jianshu.com/p/db5da880154a</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当我们要编写一个echo服务器程序的时候，需要对用户从标准输入键入的交互命令做出响应。在这种情况下，服务器必须响应两个相互独立的I/O事件：1）网络客户端发起网络连接请求，2）用户在键盘上键入命令行。我们先等待哪个事件呢？没有哪个选择是理想的。如果在acceptor中等待一个连接请求，我们就不能响应输入的命令。类似地，如果在read中等待一个输入命令，我们就不能响应任何连接请求。针对这种困境的一个解决办法就是I/O多路复用技术。基本思路就是使用select函数，要求内核挂起进程，只有在一个或多个I/O事件发生后，才将控制返回给应用程序。–《UNIX网络编程》<br>我们以书中的这段描述来引出我们要讲述的I/O多路复用技术。</p>
+<h1 id="I-O多路复用概述"><a href="#I-O多路复用概述" class="headerlink" title="I/O多路复用概述"></a>I/O多路复用概述</h1><p><img src="/2019/03/13/解读IO多路复用技术/picture_1.webp" alt=""></p>
+<p>I/O多路复用，I/O就是指的我们网络I/O,多路指多个TCP连接(或多个Channel)，复用指复用一个或少量线程。串起来理解就是很多个网络I/O复用一个或少量的线程来处理这些连接。现在大部分讲述I/O多路复用的文章用到的上面这张图是《UNIX网络编程》一书的。那么这也是当前我们理解I/O多路复用技术的基础知识。从这张图里面我们GET到哪些点呢？<br>个人理解有：<br>1、怎么区分的应用进程与内核<br>2、有两次系统调用分别是select和recvfrom<br>3、两次系统调用进程都阻塞<br>4、等待哪些数据准备好<br>下面我们逐一阐述。</p>
+<h1 id="二、用户进程和内核"><a href="#二、用户进程和内核" class="headerlink" title="二、用户进程和内核"></a>二、用户进程和内核</h1><p><img src="/2019/03/13/解读IO多路复用技术/picture_2.webp" alt=""></p>
+<p>根据网络OSI七层模型和网际网协议族的同比，我们可以知道这里说的用户进程和内核是以传输层为分割线，传输层以上(不包括)是指用户进程，传输层以下(包括)是指内核。上三层，web客户端比如浏览器、web服务器这些都属于应用层，里面跑的程序则是应用进程。下四层处理所有的通信细节，发送数据，等待确认，给无序到达的数据排序等等。这四层也是通常作为操作系统内核的一部分提供。由此可见图1中说的系统调用的地方正是第四层和第五层之间的位置。</p>
+<p>为了理解用户进程和内核，再来看一张图，网络数据流向图。也清晰的标明了用户进程和内核的位置。值得注意的一点是客户与服务器之间的信息流在其中一端是向下通过协议栈的，跨越网络后，在另一端是向上通过协议栈的。这张图描述的是局域网内，如果是在广域网那么就是通过很多个路由器承载实际数据流。<br><img src="/2019/03/13/解读IO多路复用技术/picture_3.webp" alt=""></p>
+<h1 id="三、select和recvfrom"><a href="#三、select和recvfrom" class="headerlink" title="三、select和recvfrom"></a>三、select和recvfrom</h1><h2 id="3-1、select"><a href="#3-1、select" class="headerlink" title="3.1、select"></a>3.1、select</h2><p>理解了select就抓住了I/O多路复用的精髓，对应的操作系统中调用的则是系统的select函数，该函数会等待多个I/O事件(比如读就绪，写)的任何一个发生，并且只要有一个网络事件发生，select线程就会执行。如果没有任何一个事件发生则阻塞。我们在下面小节中会重点讲述。函数如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/select.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">select</span><span class="params">(<span class="keyword">int</span> maxfdpl,fd_set *readset,fd_set *writeset,fd_set *exceptset,<span class="keyword">const</span> struct timeval *timeout)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>从这个函数的定义中的参数，我们能够看出它描述的是，当调用select的时候告知内核对那些事件(读就绪，写)感兴趣以及等待多长时间。</p>
+<p>为了方便我们理解select调用，可以参照下面这张图，是jdk的基于I/O多路复用技术的NIO实现。重点在于理解Selector复用器。<br><img src="/2019/03/13/解读IO多路复用技术/picture_4.webp" alt=""></p>
+<h2 id="大致代码如下"><a href="#大致代码如下" class="headerlink" title="大致代码如下:"></a>大致代码如下:</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">ServerSocketChannel serverChannel = ServerSocketChannel.open();<span class="comment">// 打开一个未绑定的serversocketchannel   </span></span><br><span class="line">Selector selector = Selector.open();<span class="comment">// 创建一个Selector</span></span><br><span class="line">serverChannel .configureBlocking(<span class="literal">false</span>);<span class="comment">//设置非阻塞模式</span></span><br><span class="line">serverChannel .<span class="keyword">register</span>(selector, SelectionKey.OP_READ);<span class="comment">//将ServerSocketChannel注册到Selector</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">int</span> readyChannels = selector.select();</span><br><span class="line">  <span class="keyword">if</span>(readyChannels == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">  Set selectedKeys = selector.selectedKeys();</span><br><span class="line">  Iterator keyIterator = selectedKeys.iterator();</span><br><span class="line">  <span class="keyword">while</span>(keyIterator.hasNext()) &#123;</span><br><span class="line">    SelectionKey key = keyIterator.next();</span><br><span class="line">    <span class="keyword">if</span>(key.isAcceptable()) &#123;</span><br><span class="line">        <span class="comment">// a connection was accepted by a ServerSocketChannel.</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (key.isConnectable()) &#123;<span class="comment">//连接就绪</span></span><br><span class="line">        <span class="comment">// a connection was established with a remote server.</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (key.isReadable()) &#123;<span class="comment">//读就绪</span></span><br><span class="line">        <span class="comment">// a channel is ready for reading</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (key.isWritable()) &#123;<span class="comment">//写就绪</span></span><br><span class="line">        <span class="comment">// a channel is ready for writing</span></span><br><span class="line">    &#125;</span><br><span class="line">    keyIterator.remove();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2、recvfrom"><a href="#3-2、recvfrom" class="headerlink" title="3.2、recvfrom"></a>3.2、recvfrom</h2><p>recvfrom一般用于UDP协议中,但是如果在TCP中connect函数调用后也可以用。用于从（已连接）套接口上接收数据，并捕获数据发送源的地址。<strong>也就是我们本文中以及书中说的真正的I/O操作</strong>。</p>
+<h1 id="四、阻塞、非阻塞"><a href="#四、阻塞、非阻塞" class="headerlink" title="四、阻塞、非阻塞"></a>四、阻塞、非阻塞</h1><p><img src="/2019/03/13/解读IO多路复用技术/picture_5.webp" alt=""><br>这张图可以看出阻塞式I/O、非阻塞式I/O、I/O复用、信号驱动式I/O他们的第二阶段都相同，也就是都会阻塞到recvfrom调用上面就是图中“发起”的动作。异步式I/O两个阶段都要处理。这里我们重点对比阻塞式I/O(也就是我们常说的传统的BIO)和I/O复用之间的区别。</p>
+<p><strong>阻塞式I/O和I/O复用，两个阶段都阻塞，那区别在哪里呢？就在于第三节讲述的Selector，虽然第一阶段都是阻塞，但是阻塞式I/O如果要接收更多的连接，就必须创建更多的线程。I/O复用模式下在第一个阶段大量的连接统统都可以过来直接注册到Selector复用器上面，同时只要单个或者少量的线程来循环处理这些连接事件就可以了，一旦达到“就绪”的条件，就可以立即执行真正的I/O操作。这就是I/O复用与传统的阻塞式I/O最大的不同。也正是I/O复用的精髓所在</strong></p>
+<p>从应用进程的角度去理解始终是阻塞的，等待数据和将数据复制到用户进程这两个阶段都是阻塞的。这一点我们从应用程序是可以清楚的得知，比如我们调用一个以I/O复用为基础的NIO应用服务。调用端是一直阻塞等待返回结果的。<br>从内核的角度等待Selector上面的网络事件就绪，是阻塞的，如果没有任何一个网络事件就绪则一直等待直到有一个或者多个网络事件就绪。但是从内核的角度考虑，有一点是不阻塞的，就是复制数据，因为内核不用等待，当有就绪条件满足的时候，它直接复制，其余时间在处理别的就绪的条件。这也是大家一直说的非阻塞I/O。实际上是就是指的这个地方的非阻塞。</p>
+<p><strong>当我们阅读《UNIX网络编程》(第三版)一书的时候。P124，6.2.3小节中“而不是阻塞在真正的I/O系统调用上”这里的阻塞是相对内核来说的。P127，6.2.7小节“因为其中真正的I/O操作(recvfrom)将阻塞进程”这里的阻塞是相对用户进程来说的。明白了这两点，理解起来就不矛盾了，而且一通到底！</strong></p>
+<h1 id="五、适用场景"><a href="#五、适用场景" class="headerlink" title="五、适用场景"></a>五、适用场景</h1><p>当服务程序需要承载大量TCP链接的时候，比如我们的消息推送系统，IM通讯，web聊天等等，在我们已经理解Selector原理的情况下，知道使用I/O复用可以用少量的线程处理大量的链接。I/O多路复用技术以事件驱动编程为基础。它运行在单一进程上下文中，因此每个逻辑流都能访问该进程的全部地址空间，这样在流之间共享数据变得很容易。</p>
+<h1 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h1><p>我们通常说的NIO大多数场景下都是基于I/O复用技术的NIO，比如jdk中的NIO，当然Tomcat8以后的NIO也是指的基于I/O复用的NIO。注意，使用NIO != 高性能，当连接数&lt;1000，并发程度不高或者局域网环境下NIO并没有显著的性能优势。如果放到线上环境，网络情况在有时候并不稳定的情况下，这种基于I/O复用技术的NIO的优势就是传统BIO不可同比的了。那么使用select的优势在于我们可以等到网络事件就绪，那么用少量的线程去轮询Selector上面注册的事件，不就绪的不处理，就绪的拿出来立即执行真正的I/O操作。这个使得我们就可以用极少量的线程去HOLD住大量的连接。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/13/解读IO多路复用技术/" data-id="cjt6siri70008pntlj25romfx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-golang交叉编译问题" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/25/golang交叉编译问题/" class="article-date">
@@ -96,9 +152,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/25/golang交叉编译问题/" data-id="cjsjz09ia0000titlscuo8usr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/25/golang交叉编译问题/" data-id="cjt6sirhi0001pntlwotev14r" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
+
     </footer>
   </div>
   
@@ -162,9 +220,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/php7 安装使用xhprof/" data-id="cjsjz09il0005titl7zvpfhoc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/php7 安装使用xhprof/" data-id="cjt6sirhu0006pntlvqp3g0xh" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
     </footer>
   </div>
   
@@ -206,9 +266,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/mongod安装/" data-id="cjsjz09ik0004titlb1vtba3u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/mongod安装/" data-id="cjt6sirhr0004pntlo9zbes76" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
     </footer>
   </div>
   
@@ -248,9 +310,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/php7 安装redis扩展/" data-id="cjsjz09ii0003titllv67lzly" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/php7 安装redis扩展/" data-id="cjt6sirhp0003pntltwthd1tc" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
     </footer>
   </div>
   
@@ -290,9 +354,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/从命令行运行CLI版本的PHP时/" data-id="cjsjz09il0006titldloaf1zr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/从命令行运行CLI版本的PHP时/" data-id="cjt6sirhw0007pntlbw9mng6h" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
     </footer>
   </div>
   
@@ -345,9 +411,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/CodeIgniter3.0的session问题/" data-id="cjsjz09ie0001titly8bswmoo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/CodeIgniter3.0的session问题/" data-id="cjt6sirhc0000pntlusbvaxen" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
     </footer>
   </div>
   
@@ -384,9 +452,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/初识GIT/" data-id="cjsjz09im0007titlcf7hj2hn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/初识GIT/" data-id="cjt6sirhs0005pntl7jsyzoy6" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
     </footer>
   </div>
   
@@ -429,7 +499,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/hello-world/" data-id="cjsjz09ig0002titllvyektyg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/hello-world/" data-id="cjt6sirhn0002pntlbhcjbpgb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -449,15 +519,29 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/php/" style="font-size: 20px;">php</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -468,6 +552,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/03/13/解读IO多路复用技术/">解读IO多路复用技术</a>
+          </li>
         
           <li>
             <a href="/2019/02/25/golang交叉编译问题/">Golang 交叉编译命令</a>
@@ -483,10 +571,6 @@
         
           <li>
             <a href="/2019/01/31/php7 安装redis扩展/">php7 安装redis扩展</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/31/从命令行运行CLI版本的PHP时/">从命令行运行CLI版本的PHP时!</a>
           </li>
         
       </ul>
