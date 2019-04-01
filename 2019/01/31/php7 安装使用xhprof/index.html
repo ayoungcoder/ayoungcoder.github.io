@@ -7,18 +7,18 @@
   
   <title>php7 安装使用Xhprof | 落枫眠</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="PHP 7.0.13 xhprof-master.zip  安装xhprof1234567cd xhprof-master/extension//usr/local/php/bin/phpize./configure  --with-php-config=/usr/local/php/bin/php-configmake &amp;amp;&amp;amp; make install 配置xhprof12# 在">
+  <meta name="description" content="PHP 7.3.1 xhprof-master.zip  注意：php5.4及以上版本不能在pecl中下载，不支持。需要在github上下载（一定要下载此版本、修复了php7不兼容create_function问题）https://github.com/longxinH/xhprof 安装xhprof1234567cd xhprof-master/extension//usr/local/php">
 <meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php7 安装使用Xhprof">
 <meta property="og:url" content="http://yoursite.com/2019/01/31/php7 安装使用xhprof/index.html">
 <meta property="og:site_name" content="落枫眠">
-<meta property="og:description" content="PHP 7.0.13 xhprof-master.zip  安装xhprof1234567cd xhprof-master/extension//usr/local/php/bin/phpize./configure  --with-php-config=/usr/local/php/bin/php-configmake &amp;amp;&amp;amp; make install 配置xhprof12# 在">
+<meta property="og:description" content="PHP 7.3.1 xhprof-master.zip  注意：php5.4及以上版本不能在pecl中下载，不支持。需要在github上下载（一定要下载此版本、修复了php7不兼容create_function问题）https://github.com/longxinH/xhprof 安装xhprof1234567cd xhprof-master/extension//usr/local/php">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-13T05:57:14.478Z">
+<meta property="og:updated_time" content="2019-04-01T11:44:58.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php7 安装使用Xhprof">
-<meta name="twitter:description" content="PHP 7.0.13 xhprof-master.zip  安装xhprof1234567cd xhprof-master/extension//usr/local/php/bin/phpize./configure  --with-php-config=/usr/local/php/bin/php-configmake &amp;amp;&amp;amp; make install 配置xhprof12# 在">
+<meta name="twitter:description" content="PHP 7.3.1 xhprof-master.zip  注意：php5.4及以上版本不能在pecl中下载，不支持。需要在github上下载（一定要下载此版本、修复了php7不兼容create_function问题）https://github.com/longxinH/xhprof 安装xhprof1234567cd xhprof-master/extension//usr/local/php">
   
     <link rel="alternate" href="/atom.xml" title="落枫眠" type="application/atom+xml">
   
@@ -88,9 +88,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>PHP 7.0.13</li>
+<li>PHP 7.3.1</li>
 <li>xhprof-master.zip</li>
 </ul>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>php5.4及以上版本不能在pecl中下载，不支持。<br>需要在github上下载（一定要下载此版本、修复了php7不兼容create_function问题）<br><a href="https://github.com/longxinH/xhprof" target="_blank" rel="noopener">https://github.com/longxinH/xhprof</a></p>
 <h3 id="安装xhprof"><a href="#安装xhprof" class="headerlink" title="安装xhprof"></a><strong>安装xhprof</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> xhprof-master/extension/</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line"></span><br><span class="line">./configure  --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 <h3 id="配置xhprof"><a href="#配置xhprof" class="headerlink" title="配置xhprof"></a><strong>配置xhprof</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在php.ini中添加 </span></span><br><span class="line">extension=xhprof.so;</span><br></pre></td></tr></table></figure>
 <p>重启php-fpm，配置一个虚拟主机（xhprof.test.net）讲目录只想xhprof-master/xhprof_html，如果请求xhprof.test.net会列表出当前所有的分析的文件索引，点进去可以看到具体的分析内容。</p>
@@ -121,7 +122,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/php7 安装使用xhprof/" data-id="cjt6sirhu0006pntlvqp3g0xh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/php7 安装使用xhprof/" data-id="cjtyajz5f000cxgtlrxwuf0s8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>

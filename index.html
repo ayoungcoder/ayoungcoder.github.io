@@ -106,7 +106,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/13/解读IO多路复用技术/" data-id="cjt6siri70008pntlj25romfx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/13/解读IO多路复用技术/" data-id="cjtyajz5x000jxgtlsvn4wyf4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -152,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/25/golang交叉编译问题/" data-id="cjt6sirhi0001pntlwotev14r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/25/golang交叉编译问题/" data-id="cjtyajz5i000fxgtlwuog8zb2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
@@ -187,9 +187,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>PHP 7.0.13</li>
+<li>PHP 7.3.1</li>
 <li>xhprof-master.zip</li>
 </ul>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>php5.4及以上版本不能在pecl中下载，不支持。<br>需要在github上下载（一定要下载此版本、修复了php7不兼容create_function问题）<br><a href="https://github.com/longxinH/xhprof" target="_blank" rel="noopener">https://github.com/longxinH/xhprof</a></p>
 <h3 id="安装xhprof"><a href="#安装xhprof" class="headerlink" title="安装xhprof"></a><strong>安装xhprof</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> xhprof-master/extension/</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line"></span><br><span class="line">./configure  --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 <h3 id="配置xhprof"><a href="#配置xhprof" class="headerlink" title="配置xhprof"></a><strong>配置xhprof</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在php.ini中添加 </span></span><br><span class="line">extension=xhprof.so;</span><br></pre></td></tr></table></figure>
 <p>重启php-fpm，配置一个虚拟主机（xhprof.test.net）讲目录只想xhprof-master/xhprof_html，如果请求xhprof.test.net会列表出当前所有的分析的文件索引，点进去可以看到具体的分析内容。</p>
@@ -220,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/php7 安装使用xhprof/" data-id="cjt6sirhu0006pntlvqp3g0xh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/php7 安装使用xhprof/" data-id="cjtyajz5f000cxgtlrxwuf0s8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -255,9 +256,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>PHP 7.0.13、PHP 7.0.30</li>
+<li>PHP 7.3.1</li>
 <li>MongoDB shell version v3.4.2</li>
-<li>mongodb-1.1.9.tgz</li>
+<li>mongodb-1.5.3.tgz（<a href="https://pecl.php.net/package/mongodb）" target="_blank" rel="noopener">https://pecl.php.net/package/mongodb）</a></li>
 </ul>
 <h3 id="MongoDB-安装"><a href="#MongoDB-安装" class="headerlink" title="MongoDB 安装"></a><strong>MongoDB 安装</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入安装目录</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载</span></span><br><span class="line">sudo curl -O https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.4.2.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">sudo tar -zxvf mongodb-osx-x86_64-3.4.2.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名</span></span><br><span class="line">sudo mv mongodb-osx-x86_64-3.4.2 mongodb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加到 PATH 路径中</span></span><br><span class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/mongodb/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建数据库目录</span></span><br><span class="line">sudo mkdir -p /data/db</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">sudo mongod</span><br><span class="line">sudo mongod  -f /usr/<span class="built_in">local</span>/etc/mongo.conf —fork --logpath /usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/mongodb/mongo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动终端</span></span><br><span class="line">./mongo</span><br><span class="line">mongo localhost:27017/<span class="built_in">test</span></span><br><span class="line">mongo —nodb	</span><br><span class="line">mongo —norc</span><br></pre></td></tr></table></figure>
 <h3 id="PHP编译MongoDB扩展"><a href="#PHP编译MongoDB扩展" class="headerlink" title="PHP编译MongoDB扩展"></a><strong>PHP编译MongoDB扩展</strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入安装目录</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载</span></span><br><span class="line">sudo curl -O http://pecl.php.net/get/mongodb-1.1.9.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">sudo tar -zxvf mongodb-1.1.9.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line"><span class="built_in">cd</span> mongodb-1.1.9/</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/php7/bin/phpize</span><br><span class="line"></span><br><span class="line">sudo ./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#  编译时报错 configure: error: Cannot find OpenSSL's &lt;evp.h&gt;.  需要指定你的openssl的目录、如果没有brew安装即可</span></span><br><span class="line"></span><br><span class="line">sudo ./configure </span><br><span class="line">	--with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config	</span><br><span class="line">	--with-openssl-dir=/usr/<span class="built_in">local</span>/Cellar/openssl/1.0.2l</span><br><span class="line"></span><br><span class="line">sudo make</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时也生成了一个扩展包(用这个)</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mongodb-1.1.9/mongodb-1.1.9/modules</span><br><span class="line">	</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这时又生成了一个扩展包</span></span><br><span class="line">/usr/<span class="built_in">local</span>/Cellar/php@7.0/7.0.30_1/pecl/20151012</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置文件添加扩展</span></span><br><span class="line">vim /usr/<span class="built_in">local</span>/php7/etc/php.ini</span><br><span class="line">extension=mongodb.so</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启php-fpm</span></span><br><span class="line">lsof -P | grep <span class="string">':9000'</span> | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9 或者 pkill php-fpm</span><br><span class="line"></span><br><span class="line">sudo /usr/<span class="built_in">local</span>/php7/sbin/php-fpm</span><br></pre></td></tr></table></figure>
@@ -266,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/mongod安装/" data-id="cjt6sirhr0004pntlo9zbes76" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/mongod安装/" data-id="cjtyajz4y0005xgtlwtp4l1jj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -311,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/php7 安装redis扩展/" data-id="cjt6sirhp0003pntltwthd1tc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/php7 安装redis扩展/" data-id="cjtyajz4s0001xgtl0oi9qsfg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -355,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/从命令行运行CLI版本的PHP时/" data-id="cjt6sirhw0007pntlbw9mng6h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/从命令行运行CLI版本的PHP时/" data-id="cjtyajz5g000dxgtlixqm5lhj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -412,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/CodeIgniter3.0的session问题/" data-id="cjt6sirhc0000pntlusbvaxen" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/CodeIgniter3.0的session问题/" data-id="cjtyajz4m0000xgtl9k0pc7uf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -453,7 +454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/初识GIT/" data-id="cjt6sirhs0005pntl7jsyzoy6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/初识GIT/" data-id="cjtyajz4v0003xgtlb37kpdoy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -500,7 +501,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/31/hello-world/" data-id="cjt6sirhn0002pntlbhcjbpgb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/31/hello-world/" data-id="cjtyajz4w0004xgtloa4xjlk3" class="article-share-link">Share</a>
       
       
     </footer>
