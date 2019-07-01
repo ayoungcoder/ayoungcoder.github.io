@@ -84,7 +84,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>转载[Linux下utf-8 BOM 文件的检查与删除][1]</p>
+        <p><strong>文章转载</strong> <a href="https://www.liurongxing.com/check-file-utf-8-bom-and-delete-on-linux.html" target="_blank" rel="noopener">https://www.liurongxing.com/check-file-utf-8-bom-and-delete-on-linux.html</a></p>
 <p>bom:UTF-8签名（UTF-8 signature）也叫做BOM（Byte Order Mark）</p>
 <p>当源程序是 gbk 格式，你转换为 utf8 的时候，很多情况是头部会出现 bom,如果是 php 代码，这样会出现很多意想不到的事情，那怎么办呢，你可以用 linux 命令来查找，然后对文件的 bom 进行删除。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 grep 查找带 bom 的文件</span></span><br><span class="line">grep -r $<span class="string">'\xef\xbb\xbf'</span> * |grep .php</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 grep 查找带 bom 的文件，并使用 perl 去掉 bom 头</span></span><br><span class="line">grep -rl $<span class="string">'\xEF\xBB\xBF'</span> . | xargs perl -i -pe <span class="string">'s&#123;\xEF\xBB\xBF&#125;&#123;&#125;'</span></span><br></pre></td></tr></table></figure>
