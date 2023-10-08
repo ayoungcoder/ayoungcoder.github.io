@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>linux 常用排查命令 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="磁盘瓶颈12345678910111213141516# 详细列出磁盘的读写情况（当看到 I&#x2F;O 等待时间所占 CPU 时间的比重很高的时候，首先要检查的就是机器是否正在大量使用交换空间，同时关注 iowait 占比 cpu 的消耗是否很大，如果大说明磁盘存在大的瓶颈，同时关注 await，表示磁盘的响应时间以便小于 5ms）iostat -x -k -d 1# 查看系统各个磁盘的读写性能（重点关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 常用排查命令">
+<meta property="og:url" content="http://example.com/2023/10/08/linux%20%E5%B8%B8%E7%94%A8%E6%8E%92%E6%9F%A5%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="磁盘瓶颈12345678910111213141516# 详细列出磁盘的读写情况（当看到 I&#x2F;O 等待时间所占 CPU 时间的比重很高的时候，首先要检查的就是机器是否正在大量使用交换空间，同时关注 iowait 占比 cpu 的消耗是否很大，如果大说明磁盘存在大的瓶颈，同时关注 await，表示磁盘的响应时间以便小于 5ms）iostat -x -k -d 1# 查看系统各个磁盘的读写性能（重点关">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-08T02:50:52.439Z">
+<meta property="article:modified_time" content="2023-10-08T03:31:53.171Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-linux 常用排查命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/08/linux%20%E5%B8%B8%E7%94%A8%E6%8E%92%E6%9F%A5%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2023-10-08T02:50:52.439Z" itemprop="datePublished">2023-10-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      linux 常用排查命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="磁盘瓶颈"><a href="#磁盘瓶颈" class="headerlink" title="磁盘瓶颈"></a>磁盘瓶颈</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">详细列出磁盘的读写情况（当看到 I/O 等待时间所占 CPU 时间的比重很高的时候，首先要检查的就是机器是否正在大量使用交换空间，同时关注 iowait 占比 cpu 的消耗是否很大，如果大说明磁盘存在大的瓶颈，同时关注 await，表示磁盘的响应时间以便小于 5ms）</span></span><br><span class="line">iostat -x -k -d 1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看系统各个磁盘的读写性能（重点关注 await 和 iowait 的 cpu 占比）</span></span><br><span class="line">iostat -x </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看哪个进程在大量读取 IO（一般先通过 iostat 查看是否存在 io 瓶颈，再定位哪个进程在大量读取 IO）</span></span><br><span class="line">iotop</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看磁盘剩余空间</span></span><br><span class="line">df -lh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看磁盘使用多少</span></span><br><span class="line">du -sh</span><br><span class="line"></span><br><span class="line">ls -lhS</span><br></pre></td></tr></table></figure>
+
+<h3 id="内存瓶颈"><a href="#内存瓶颈" class="headerlink" title="内存瓶颈"></a>内存瓶颈</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看内存使用</span></span><br><span class="line">free</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 swap <span class="keyword">in</span>/out 详细定位是否存在性能瓶颈(推荐使用)</span></span><br><span class="line">vmstat 3 (间隔时间) 100 (监控次数)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">和 free 命令类似，查看内存的使用情况，但是不包含 swap 的情况</span></span><br><span class="line">sar -r 3</span><br></pre></td></tr></table></figure>
+
+<h3 id="cpu瓶颈"><a href="#cpu瓶颈" class="headerlink" title="cpu瓶颈"></a>cpu瓶颈</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">找出占用CPU最高的10个进程</span></span><br><span class="line">ps aux | sort -k3nr | head -n 10</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看占用内存最高的10个进程</span></span><br><span class="line">ps aux | sort -k4nr | head -n 10　</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看某个进程的 cpu 消耗排序</span></span><br><span class="line">ps -Lp 进程号 cu</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按照 cpu 消耗高低进行排序</span></span><br><span class="line">top -H </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看进程打开的文件</span></span><br><span class="line">lsof -p 进程PID</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看进程的内存使用情况</span></span><br><span class="line">pmap 进程PID</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用瓶颈"><a href="#应用瓶颈" class="headerlink" title="应用瓶颈"></a>应用瓶颈</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看特定进程</span></span><br><span class="line">ps -ef | grep php</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看特定进程的数量</span></span><br><span class="line">ps -ef | grep php | wc -l</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计日志文件中包含特定异常数量</span></span><br><span class="line">cat ***.log | grep ***Exception| wc -l</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">用于查看线程是否存在死锁</span></span><br><span class="line">jstack -l pid</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计 <span class="built_in">log</span> 中 301、302 状态码的行数，<span class="variable">$8</span> 表示第八列是状态码，可以根据实际情况更改</span></span><br><span class="line">awk&#x27;&#123;print $8&#125;&#x27; 2017-05-22-access_log| egrep &#x27;301|302&#x27;| wc -l</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/10/08/linux%20%E5%B8%B8%E7%94%A8%E6%8E%92%E6%9F%A5%E5%91%BD%E4%BB%A4/" data-id="clngwuw320000gfy507vg1arw" data-title="linux 常用排查命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/08/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/10/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/08/linux%20%E5%B8%B8%E7%94%A8%E6%8E%92%E6%9F%A5%E5%91%BD%E4%BB%A4/">linux 常用排查命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
